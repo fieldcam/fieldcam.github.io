@@ -3,144 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FieldCam | Professional Field Photography & Verification</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>FieldCam Homepage</title>
 </head>
 <body>
-    <header id="mainHeader">
-        <nav>
-            <a href="index.html" class="logo">
-                <i class="fas fa-camera-viewfinder"></i>
-                <span>FieldCam</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="how-it-works.html">How It Works</a></li>
-                <li><a href="qa.html">Q&A</a></li>
-                <li><a href="roadmap.html">Roadmap</a></li>
-                <li><a href="support.html">Support</a></li>
-            </ul>
-            <a href="#" class="btn btn-primary btn-sm">Download App</a>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content reveal">
-                <h1>Capture Once, <br><span class="gradient-text">Trust Forever.</span></h1>
-                <p>The professional Android camera app for verified field documentation. Secure your evidence with cryptographic signatures and tamper-proof metadata.</p>
-                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#" class="btn btn-primary"><i class="fab fa-google-play"></i> Google Play</a>
-                    <a href="features.html" class="btn btn-outline">View All Features</a>
-                </div>
-                
-                <div class="stamp-ui">
-                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&w=1000&q=80" alt="Professional Field Work">
-                    <div class="stamp-overlay">
-                        <div class="stamp-data">
-                            <div><strong>FIELDCAM VERIFIED MEDIA</strong></div>
-                            <div>DATE: 19 DEC 2025 | TIME: 14:22:05 UTC</div>
-                            <div>LAT: 20.2961° N | LON: 85.8245° E (± 3m)</div>
-                            <div>CAT: SITE INSPECTION | ID: FC-PRO-042</div>
-                        </div>
-                        <div class="stamp-qr">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=FieldCam_Verified_Sample" alt="QR Code" style="width: 100%;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Brief About Section -->
-        <section class="section py-0">
-            <div class="section-title reveal">
-                <h2>What is FieldCam?</h2>
-                <p>Designed for inspectors, engineers, surveyors, and government professionals who require indisputable visual records. FieldCam embeds metadata directly into your photos and videos, ensuring long-term authenticity.</p>
-            </div>
-
-            <div class="grid">
-                <div class="card reveal" style="transition-delay: 0.1s;">
-                    <i class="fas fa-stamp"></i>
-                    <h3>Verified Stamping</h3>
-                    <p>Date, time, GPS coordinates, and accuracy details are burned directly into the image pixels.</p>
-                </div>
-                <div class="card reveal" style="transition-delay: 0.2s;">
-                    <i class="fas fa-qrcode"></i>
-                    <h3>Secure QR Code</h3>
-                    <p>Each photo includes an encrypted QR code containing cryptographic verification data.</p>
-                </div>
-                <div class="card reveal" style="transition-delay: 0.3s;">
-                    <i class="fas fa-shield-check"></i>
-                    <h3>Tamper Detection</h3>
-                    <p>Industry-standard SHA-256 hashing detects if even a single pixel has been modified.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Highlights Section -->
-        <section class="section">
-            <div class="grid">
-                <div class="card reveal">
-                    <i class="fas fa-plane-slash"></i>
-                    <h3>Offline-First</h3>
-                    <p>Capture and verify without internet. Ideal for remote sites and high-security areas.</p>
-                </div>
-                <div class="card reveal">
-                    <i class="fas fa-file-export"></i>
-                    <h3>Pro Exports</h3>
-                    <p>Generate PDF reports, Map files (KML), and ZIP archives ready for official submission.</p>
-                </div>
-                <div class="card reveal">
-                    <i class="fab fa-whatsapp"></i>
-                    <h3>WhatsApp-Safe</h3>
-                    <p>Our verification technology is engineered to survive heavy social media compression.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
+    <nav>
+        <h1>FieldCam</h1>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#tutorials">Tutorials</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <h2>Welcome to FieldCam</h2>
+        <p>Your go-to platform for field camera solutions.</p>
+    </section>
+    <section id="features">
+        <h2>Features</h2>
+        <ul>
+            <li>Feature 1</li>
+            <li>Feature 2</li>
+            <li>Feature 3</li>
+        </ul>
+    </section>
+    <section id="tutorials">
+        <h2>Tutorials</h2>
+        <p>Learn how to use FieldCam with our tutorials.</p>
+    </section>
+    <section id="videos">
+        <h2>Videos</h2>
+        <p>Watch our latest videos on FieldCam.</p>
+    </section>
+    <section id="data-use">
+        <h2>Data Use Table</h2>
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Usage</th>
+            </tr>
+            <tr>
+                <td>Type 1</td>
+                <td>Usage 1</td>
+            </tr>
+        </table>
+    </section>
+    <section id="community">
+        <h2>Community Links</h2>
+        <ul>
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+        </ul>
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <input type="submit" value="Submit">
+        </form>
+    </section>
     <footer>
-        <div class="footer-grid">
-            <div class="footer-section">
-                <a href="#" class="logo" style="color: white; margin-bottom: 1.5rem;">
-                    <i class="fas fa-camera-viewfinder"></i> FieldCam
-                </a>
-                <p>The global standard for professional field documentation and visual verification.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Product</h4>
-                <ul class="footer-links">
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="how-it-works.html">How It Works</a></li>
-                    <li><a href="roadmap.html">Roadmap</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul class="footer-links">
-                    <li><a href="qa.html">Public Q&A</a></li>
-                    <li><a href="support.html">Support</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <ul class="footer-links">
-                    <li><a href="mailto:support@fieldcam.app">support@fieldcam.app</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2025 FieldCam App. All rights reserved. Professional Documentation Platform.
-        </div>
+        <p>&copy; 2026 FieldCam. All rights reserved.</p>
     </footer>
-
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
