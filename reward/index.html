@@ -15,28 +15,76 @@
         }
 
         body {
-            background: radial-gradient(circle at 20% 20%, #0f3d2b, #052116);
             min-height: 100vh;
+            background: linear-gradient(-45deg, #0f3d2b, #1a5e44, #0b3d2a, #052116);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 18px;
             margin: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating icons background */
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .floating-icons i {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.05);
+            animation: floatIcon 20s infinite linear;
+        }
+        .floating-icons i:nth-child(1) { top: 10%; left: 5%; animation-duration: 18s; font-size: 3rem; }
+        .floating-icons i:nth-child(2) { top: 20%; right: 8%; animation-duration: 22s; font-size: 2.5rem; }
+        .floating-icons i:nth-child(3) { top: 60%; left: 3%; animation-duration: 25s; font-size: 3.5rem; }
+        .floating-icons i:nth-child(4) { bottom: 20%; right: 5%; animation-duration: 20s; font-size: 2.8rem; }
+        .floating-icons i:nth-child(5) { top: 45%; left: 50%; animation-duration: 28s; font-size: 3rem; }
+        .floating-icons i:nth-child(6) { top: 80%; left: 40%; animation-duration: 16s; font-size: 2rem; }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.3; }
+            25% { transform: translateY(-30px) rotate(90deg) scale(1.2); opacity: 0.6; }
+            50% { transform: translateY(20px) rotate(180deg) scale(0.8); opacity: 0.3; }
+            75% { transform: translateY(-20px) rotate(270deg) scale(1.1); opacity: 0.5; }
+            100% { transform: translateY(0) rotate(360deg) scale(1); opacity: 0.3; }
         }
 
         .share-card {
-            max-width: 540px;
+            max-width: 580px;
             width: 100%;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 56px 56px 40px 40px;
-            box-shadow: 0 30px 50px rgba(0, 20, 0, 0.7);
+            box-shadow: 0 30px 60px rgba(0, 20, 0, 0.8);
             overflow: hidden;
             transition: all 0.2s ease;
             border: 1px solid rgba(255, 215, 120, 0.3);
             position: relative;
+            z-index: 1;
+            max-height: 98vh;
+            overflow-y: auto;
         }
+        .share-card::-webkit-scrollbar { width: 4px; }
+        .share-card::-webkit-scrollbar-thumb { background: #1f7a5c; border-radius: 10px; }
 
-        /* Floating particles / confetti */
+        /* Confetti */
         .confetti-container {
             position: absolute;
             top: 0;
@@ -62,7 +110,7 @@
 
         .hero {
             background: linear-gradient(135deg, #1b5e44, #0b3d2a);
-            padding: 28px 24px 22px 24px;
+            padding: 20px 22px 18px 22px;
             color: white;
             position: relative;
             border-bottom: 4px solid #f5b342;
@@ -78,26 +126,22 @@
         }
 
         .hero-top h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
-        .hero-top h1 i {
-            color: #f9d85e;
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
-        }
+        .hero-top h1 i { color: #f9d85e; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
 
         .hero-badge {
             background: rgba(255, 215, 0, 0.2);
             backdrop-filter: blur(4px);
-            padding: 8px 18px;
+            padding: 6px 16px;
             border-radius: 60px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             border: 1px solid #f5b342;
             color: #ffe9b6;
             animation: pulseBadge 2s infinite;
@@ -107,166 +151,136 @@
             50% { transform: scale(1.05); }
         }
 
-        .hero-badge i {
-            margin-right: 6px;
-            color: #f9d85e;
-        }
-
         .hero-tagline {
-            margin-top: 12px;
-            font-size: 1.05rem;
+            margin-top: 8px;
+            font-size: 0.95rem;
             opacity: 0.9;
-            font-weight: 400;
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
             flex-wrap: wrap;
         }
-
-        .hero-tagline i {
-            color: #f5c542;
-            font-size: 1.1rem;
-        }
+        .hero-tagline i { color: #f5c542; }
 
         .hero-features {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px 16px;
-            margin-top: 14px;
+            gap: 8px 14px;
+            margin-top: 10px;
             background: rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-radius: 60px;
             backdrop-filter: blur(2px);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 500;
         }
-
-        .hero-features span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .hero-features i {
-            color: #f5c542;
-            font-size: 0.9rem;
-        }
+        .hero-features span { display: flex; align-items: center; gap: 5px; }
+        .hero-features i { color: #f5c542; }
 
         .content {
-            padding: 20px 22px 14px 22px;
-            background: #fafcfb;
+            padding: 16px 20px 12px 20px;
+            background: transparent;
             position: relative;
             z-index: 2;
         }
 
+        /* Real-time counter */
+        .live-counter {
+            background: linear-gradient(135deg, #edf5f0, #dcebe3);
+            border-radius: 40px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #c8dfd2;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .live-counter .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: #25a87a;
+            border-radius: 50%;
+            animation: pulseDot 1.5s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+        .live-counter .count { font-weight: 700; color: #0b3d2a; font-size: 1.1rem; }
+        .live-counter .ticker {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #1f5a44;
+            font-weight: 500;
+        }
+        .live-counter .ticker span { display: inline-block; animation: tickerScroll 8s infinite linear; }
+        @keyframes tickerScroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
         /* Stats row */
         .stats-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
         }
         .stat-item {
-            flex: 1;
             background: #edf5f0;
-            border-radius: 20px;
-            padding: 12px 10px;
+            border-radius: 16px;
+            padding: 10px 6px;
             text-align: center;
             border: 1px solid #d4e6de;
         }
-        .stat-item i {
-            color: #1f7a5c;
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .stat-item .number {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #0b3d2a;
-        }
-        .stat-item .label {
-            font-size: 0.6rem;
-            color: #3f6a5a;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .stat-item i { color: #1f7a5c; font-size: 1rem; display: block; margin-bottom: 2px; }
+        .stat-item .number { font-size: 1.1rem; font-weight: 800; color: #0b3d2a; }
+        .stat-item .label { font-size: 0.55rem; color: #3f6a5a; text-transform: uppercase; letter-spacing: 0.3px; }
 
         .reward-cta {
             background: linear-gradient(105deg, #fcf3e0, #f7e8ce);
-            border-radius: 40px;
-            padding: 16px 22px;
+            border-radius: 30px;
+            padding: 14px 18px;
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             border: 1px solid #eace9e;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
             box-shadow: 0 4px 12px rgba(181, 135, 50, 0.12);
             transition: all 0.3s ease;
         }
-        .reward-cta.rewarded {
-            background: #f7e9cf;
-            border-color: #dba14b;
-        }
+        .reward-cta.rewarded { background: #f7e9cf; border-color: #dba14b; }
+        .reward-cta i { font-size: 2rem; color: #c48b2b; }
+        .reward-cta div { flex: 1; }
+        .reward-cta strong { font-size: 1rem; color: #3d2b0c; display: block; line-height: 1.2; }
+        .reward-cta span { font-size: 0.8rem; color: #5c451b; font-weight: 500; }
 
-        .reward-cta i {
-            font-size: 2.4rem;
-            color: #c48b2b;
-        }
-
-        .reward-cta div {
-            flex: 1;
-        }
-
-        .reward-cta strong {
-            font-size: 1.2rem;
-            color: #3d2b0c;
-            display: block;
-            line-height: 1.3;
-        }
-
-        .reward-cta span {
-            font-size: 0.9rem;
-            color: #5c451b;
-            font-weight: 500;
-        }
-
-        /* Multiplier badge */
         .multiplier-badge {
             background: #c48b2b;
             color: white;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 40px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             display: inline-block;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         .progress-block {
             background: #edf5f0;
             border-radius: 60px;
-            padding: 8px 12px 8px 18px;
+            padding: 6px 10px 6px 16px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin: 12px 0 16px 0;
+            gap: 10px;
+            margin: 10px 0 12px 0;
             border: 1px solid #c8dfd2;
         }
-
-        .progress-block i {
-            color: #1f7a5c;
-            font-size: 1.2rem;
-        }
-
-        .progress-track {
-            flex: 1;
-            height: 12px;
-            background: #d0e3da;
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.08);
-        }
-
+        .progress-block i { color: #1f7a5c; font-size: 1rem; }
+        .progress-track { flex: 1; height: 10px; background: #d0e3da; border-radius: 40px; overflow: hidden; box-shadow: inset 0 1px 4px rgba(0,0,0,0.08); }
         .progress-fill {
             height: 100%;
             width: 0%;
@@ -276,374 +290,313 @@
             transition: width 0.5s cubic-bezier(0.2, 0.9, 0.4, 1);
             animation: shimmer 2s infinite linear;
         }
-
         @keyframes shimmer {
-            0% {
-                background-position: 0% 0;
-            }
-            100% {
-                background-position: 200% 0;
-            }
+            0% { background-position: 0% 0; }
+            100% { background-position: 200% 0; }
         }
+        .share-counter { background: white; padding: 2px 14px; border-radius: 60px; font-weight: 700; color: #0f3d2b; font-size: 0.85rem; }
 
-        .share-counter {
-            background: white;
-            padding: 2px 16px;
-            border-radius: 60px;
-            font-weight: 700;
-            color: #0f3d2b;
-            font-size: 0.95rem;
-            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
-        }
-
-        /* Share button with ripple */
+        /* Buttons */
         .btn-whatsapp {
             background: #25a87a;
             border: none;
             color: white;
             font-weight: 700;
-            font-size: 1.25rem;
-            padding: 18px 16px;
+            font-size: 1.1rem;
+            padding: 16px;
             border-radius: 80px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            box-shadow: 0 10px 24px rgba(27, 126, 87, 0.4);
+            gap: 14px;
+            box-shadow: 0 8px 20px rgba(27, 126, 87, 0.4);
             transition: all 0.2s ease;
             cursor: pointer;
             border: 1px solid #34c78f;
             letter-spacing: 0.3px;
-            margin: 6px 0 10px 0;
+            margin: 6px 0 8px 0;
             position: relative;
             overflow: hidden;
         }
         .btn-whatsapp .ripple {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,0.3);
             transform: scale(0);
             animation: rippleAnim 0.6s linear;
         }
-        @keyframes rippleAnim {
-            to { transform: scale(4); opacity: 0; }
-        }
+        @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
+        .btn-whatsapp i { font-size: 1.6rem; }
+        .btn-whatsapp:active { transform: scale(0.96); background: #1a8b64; }
+        .btn-whatsapp:disabled { background: #94b9aa; border-color: #7b9f8f; box-shadow: none; opacity: 0.7; cursor: default; transform: none; }
+        .btn-whatsapp .small-note { font-weight: 400; font-size: 0.65rem; opacity: 0.85; }
 
-        .btn-whatsapp i {
-            font-size: 2rem;
-        }
-
-        .btn-whatsapp:active {
-            transform: scale(0.96);
-            background: #1a8b64;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-whatsapp:disabled {
-            background: #94b9aa;
-            border-color: #7b9f8f;
-            box-shadow: none;
-            opacity: 0.7;
-            cursor: default;
-            transform: none;
-        }
-
-        .btn-whatsapp .small-note {
-            font-weight: 400;
-            font-size: 0.7rem;
-            opacity: 0.85;
-            margin-left: 4px;
-        }
-
-        /* Social proof */
-        .social-proof {
-            background: #e8f3ee;
-            border-radius: 20px;
-            padding: 10px 16px;
-            margin: 12px 0 8px 0;
+        /* One-click install */
+        .install-row {
             display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            font-size: 0.8rem;
-            color: #0f3326;
+            gap: 8px;
+            margin: 8px 0;
         }
-        .social-proof .avatars {
-            display: flex;
-        }
-        .social-proof .avatars span {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #1f7a5c;
+        .btn-install {
+            flex: 1;
+            background: #1b5e44;
+            border: none;
             color: white;
+            font-weight: 600;
+            padding: 10px 12px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-right: -8px;
-            border: 2px solid white;
+            gap: 8px;
         }
-        .social-proof .avatars span:nth-child(2) { background: #c48b2b; }
-        .social-proof .avatars span:nth-child(3) { background: #2c7a9e; }
-        .social-proof .avatars span:nth-child(4) { background: #b5573a; }
+        .btn-install:active { transform: scale(0.95); }
+        .btn-install.apple { background: #2c2c2c; }
+        .btn-install.google { background: #1f7a5c; }
 
-        .reset-row {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 8px;
-        }
-
-        .reset-btn {
-            background: transparent;
-            border: none;
-            color: #2e6b54;
-            font-size: 0.7rem;
-            padding: 4px 14px;
-            border-radius: 40px;
-            background: #e5f0ea;
-            cursor: pointer;
-            transition: 0.15s;
-            font-weight: 500;
-        }
-
-        .reset-btn:active {
-            background: #cde0d4;
-        }
-
-        .share-preview {
-            background: #e1f0e9;
-            border-radius: 28px;
-            padding: 14px 18px;
-            margin: 16px 0 6px 0;
-            border-left: 6px solid #f5b342;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .share-preview i {
-            color: #2f7a5f;
-            font-size: 1.3rem;
-            margin-top: 2px;
-        }
-
-        .share-preview p {
-            font-size: 0.85rem;
-            color: #0f3326;
-            font-weight: 400;
-            line-height: 1.4;
-        }
-
-        .share-preview strong {
-            color: #0b3d2a;
-            font-weight: 700;
-        }
-
-        .share-preview .highlight {
-            background: #f7d99a;
-            padding: 2px 10px;
-            border-radius: 40px;
-            font-weight: 600;
-            color: #2f1f04;
-        }
-
-        /* Reward link section */
+        /* Reward link */
         .reward-link-section {
             background: linear-gradient(135deg, #f7e9cf, #fcf3e0);
-            border-radius: 28px;
-            padding: 16px 20px;
-            margin: 14px 0 10px 0;
+            border-radius: 24px;
+            padding: 14px 16px;
+            margin: 10px 0;
             border: 2px dashed #c48b2b;
             display: none;
             animation: slideDown 0.5s ease;
         }
-        .reward-link-section.show {
-            display: block;
+        .reward-link-section.show { display: block; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .reward-link-section .link-label { font-weight: 700; color: #3d2b0c; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .reward-link-section .link-label i { color: #c48b2b; }
+        .reward-link-box { display: flex; gap: 8px; align-items: center; background: white; border-radius: 60px; padding: 3px 3px 3px 14px; border: 1px solid #dba14b; }
+        .reward-link-box input { flex: 1; border: none; background: transparent; padding: 8px 0; font-size: 0.75rem; color: #0b3d2a; outline: none; font-weight: 500; min-width: 0; }
+        .reward-link-box .copy-btn { background: #25a87a; border: none; color: white; padding: 6px 14px; border-radius: 60px; font-weight: 600; font-size: 0.7rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .reward-link-box .copy-btn:active { transform: scale(0.95); }
+
+        /* Wallet */
+        .wallet-section {
+            background: linear-gradient(135deg, #e8f3ee, #dcebe3);
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            border: 1px solid #c8dfd2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
         }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .wallet-section .wallet-balance { display: flex; align-items: center; gap: 10px; }
+        .wallet-section .wallet-balance i { color: #c48b2b; font-size: 1.4rem; }
+        .wallet-section .wallet-balance .amount { font-size: 1.4rem; font-weight: 800; color: #0b3d2a; }
+        .wallet-section .wallet-balance .label { font-size: 0.7rem; color: #3f6a5a; }
+        .wallet-section .btn-redeem { background: #c48b2b; border: none; color: white; padding: 6px 16px; border-radius: 40px; font-weight: 600; font-size: 0.75rem; cursor: pointer; transition: 0.2s; }
+        .wallet-section .btn-redeem:active { transform: scale(0.95); }
+
+        /* Achievements */
+        .achievements-section {
+            background: #edf5f0;
+            border-radius: 20px;
+            padding: 12px 14px;
+            margin: 10px 0;
+            border: 1px solid #c8dfd2;
         }
-        .reward-link-section .link-label {
-            font-weight: 700;
-            color: #3d2b0c;
-            font-size: 0.9rem;
+        .achievements-section .section-title { font-size: 0.8rem; font-weight: 700; color: #0b3d2a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .achievements-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        .achievement-item { text-align: center; padding: 6px 4px; border-radius: 12px; background: white; border: 2px solid #d4e6de; transition: 0.3s; opacity: 0.4; }
+        .achievement-item.unlocked { opacity: 1; border-color: #c48b2b; background: #fcf3e0; animation: achievementPop 0.5s ease; }
+        @keyframes achievementPop {
+            0% { transform: scale(0.5); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .achievement-item i { font-size: 1.4rem; display: block; }
+        .achievement-item .name { font-size: 0.5rem; font-weight: 600; color: #0b3d2a; margin-top: 2px; }
+
+        /* Missions */
+        .missions-section {
+            background: #edf5f0;
+            border-radius: 20px;
+            padding: 12px 14px;
+            margin: 10px 0;
+            border: 1px solid #c8dfd2;
+        }
+        .missions-section .section-title { font-size: 0.8rem; font-weight: 700; color: #0b3d2a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .mission-item { display: flex; align-items: center; gap: 10px; padding: 6px 10px; background: white; border-radius: 40px; margin-bottom: 4px; border: 1px solid #d4e6de; }
+        .mission-item .mission-icon { width: 28px; height: 28px; border-radius: 50%; background: #1f7a5c; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+        .mission-item .mission-info { flex: 1; }
+        .mission-item .mission-info .title { font-size: 0.75rem; font-weight: 600; color: #0b3d2a; }
+        .mission-item .mission-info .desc { font-size: 0.6rem; color: #3f6a5a; }
+        .mission-item .mission-progress { font-size: 0.7rem; font-weight: 700; color: #1f7a5c; }
+        .mission-item.completed { border-color: #c48b2b; background: #fcf3e0; }
+        .mission-item .mission-badge { background: #c48b2b; color: white; padding: 2px 8px; border-radius: 40px; font-size: 0.6rem; font-weight: 700; }
+
+        /* Email capture */
+        .email-section {
+            background: linear-gradient(135deg, #e8f3ee, #dcebe3);
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            border: 1px solid #c8dfd2;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .email-section input { flex: 1; padding: 10px 14px; border: 1px solid #c8dfd2; border-radius: 60px; font-size: 0.8rem; outline: none; min-width: 120px; }
+        .email-section input:focus { border-color: #1f7a5c; }
+        .email-section .btn-subscribe { background: #1f7a5c; border: none; color: white; padding: 10px 20px; border-radius: 60px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .email-section .btn-subscribe:active { transform: scale(0.95); }
+
+        /* Level indicator */
+        .level-indicator {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 8px;
+            background: #edf5f0;
+            border-radius: 40px;
+            padding: 6px 14px 6px 10px;
+            margin: 8px 0;
+            border: 1px solid #c8dfd2;
         }
-        .reward-link-section .link-label i {
-            color: #c48b2b;
-            font-size: 1.2rem;
+        .level-indicator .level-badge { background: #c48b2b; color: white; padding: 4px 12px; border-radius: 40px; font-weight: 700; font-size: 0.7rem; }
+        .level-indicator .level-info { flex: 1; font-size: 0.8rem; color: #0b3d2a; }
+        .level-indicator .level-info strong { color: #c48b2b; }
+
+        /* Geolocation */
+        .geo-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin: 8px 0;
         }
-        .reward-link-box {
+        .geo-item { background: #edf5f0; border-radius: 12px; padding: 6px 8px; text-align: center; border: 1px solid #d4e6de; }
+        .geo-item .flag { font-size: 1.2rem; }
+        .geo-item .name { font-size: 0.6rem; font-weight: 600; color: #0b3d2a; }
+        .geo-item .shares { font-size: 0.6rem; color: #3f6a5a; }
+
+        .social-proof {
+            background: #e8f3ee;
+            border-radius: 16px;
+            padding: 8px 14px;
+            margin: 8px 0;
             display: flex;
-            gap: 10px;
             align-items: center;
-            background: white;
-            border-radius: 60px;
-            padding: 4px 4px 4px 18px;
-            border: 1px solid #dba14b;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 0.75rem;
+            color: #0f3326;
         }
-        .reward-link-box input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            padding: 10px 0;
-            font-size: 0.8rem;
-            color: #0b3d2a;
-            outline: none;
-            font-weight: 500;
-            min-width: 0;
+        .social-proof .avatars { display: flex; }
+        .social-proof .avatars span { width: 26px; height: 26px; border-radius: 50%; background: #1f7a5c; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 700; margin-right: -6px; border: 2px solid white; }
+        .social-proof .avatars span:nth-child(2) { background: #c48b2b; }
+        .social-proof .avatars span:nth-child(3) { background: #2c7a9e; }
+
+        .share-preview {
+            background: #e1f0e9;
+            border-radius: 20px;
+            padding: 10px 14px;
+            margin: 10px 0 6px 0;
+            border-left: 5px solid #f5b342;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
         }
-        .reward-link-box .copy-btn {
-            background: #25a87a;
-            border: none;
-            color: white;
-            padding: 8px 18px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
-            white-space: nowrap;
-        }
-        .reward-link-box .copy-btn:active {
-            transform: scale(0.95);
-            background: #1a8b64;
-        }
-        .reward-link-box .copy-btn.copied {
-            background: #7ba392;
-        }
+        .share-preview i { color: #2f7a5f; font-size: 1.1rem; margin-top: 2px; }
+        .share-preview p { font-size: 0.8rem; color: #0f3326; font-weight: 400; line-height: 1.3; }
+        .share-preview .highlight { background: #f7d99a; padding: 2px 8px; border-radius: 40px; font-weight: 600; color: #2f1f04; }
+
+        .reset-row { display: flex; justify-content: flex-end; margin-top: 6px; }
+        .reset-btn { background: transparent; border: none; color: #2e6b54; font-size: 0.65rem; padding: 4px 12px; border-radius: 40px; background: #e5f0ea; cursor: pointer; transition: 0.15s; font-weight: 500; }
 
         .footer-links {
-            padding: 14px 22px 12px 22px;
+            padding: 10px 18px 8px 18px;
             background: white;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px 20px;
+            gap: 8px 14px;
             border-top: 1px solid #d9e8e0;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             position: relative;
             z-index: 2;
         }
-
-        .footer-links a {
-            color: #146b4d;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover {
-            color: #0b3d2a;
-        }
-
-        .footer-links a i {
-            font-size: 0.9rem;
-        }
-
+        .footer-links a { color: #146b4d; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; }
+        .footer-links a:hover { color: #0b3d2a; }
         .meta {
             background: #f8fbf9;
             text-align: center;
-            padding: 8px 16px 14px 16px;
-            font-size: 0.65rem;
+            padding: 6px 14px 10px 14px;
+            font-size: 0.6rem;
             color: #3c6b5a;
             border-top: 1px solid #e2eee7;
-            letter-spacing: 0.3px;
             position: relative;
             z-index: 2;
         }
 
-        /* Toast notification */
         .toast {
             position: fixed;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             background: #1b5e44;
             color: white;
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 60px;
             font-weight: 600;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             opacity: 0;
             transition: all 0.4s ease;
             z-index: 999;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             max-width: 90%;
         }
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        .toast i {
-            font-size: 1.4rem;
-            color: #f5c542;
-        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast i { font-size: 1.2rem; color: #f5c542; }
 
         @media (max-width: 480px) {
-            .hero-top h1 {
-                font-size: 1.7rem;
-            }
-            .hero-features {
-                font-size: 0.7rem;
-                gap: 6px 12px;
-            }
-            .reward-cta {
-                flex-wrap: wrap;
-            }
-            .reward-cta i {
-                font-size: 2rem;
-            }
-            .share-preview {
-                flex-wrap: wrap;
-            }
-            .stats-row {
-                flex-wrap: wrap;
-            }
-            .stat-item {
-                min-width: 60px;
-            }
-            .social-proof {
-                font-size: 0.7rem;
-            }
-            .reward-link-box {
-                flex-wrap: wrap;
-                padding: 10px;
-                border-radius: 20px;
-            }
-            .reward-link-box input {
-                width: 100%;
-                font-size: 0.7rem;
-            }
-            .reward-link-box .copy-btn {
-                width: 100%;
-                justify-content: center;
-            }
+            .hero-top h1 { font-size: 1.5rem; }
+            .hero-features { font-size: 0.6rem; gap: 4px 10px; }
+            .stats-row { grid-template-columns: repeat(4, 1fr); gap: 4px; }
+            .stat-item { padding: 6px 4px; }
+            .stat-item .number { font-size: 0.9rem; }
+            .achievements-grid { grid-template-columns: repeat(4, 1fr); }
+            .geo-stats { grid-template-columns: repeat(3, 1fr); }
+            .reward-cta { flex-wrap: wrap; }
+            .reward-cta i { font-size: 1.6rem; }
+            .install-row { flex-direction: column; }
+            .email-section { flex-direction: column; }
+            .email-section input { width: 100%; }
+            .email-section .btn-subscribe { width: 100%; justify-content: center; }
+            .share-card { border-radius: 30px 30px 20px 20px; }
+            .live-counter { font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Toast notification -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Share successful!</span>
+    <!-- Floating Icons Background -->
+    <div class="floating-icons">
+        <i class="fas fa-map-marker-alt"></i>
+        <i class="fas fa-camera"></i>
+        <i class="fas fa-qrcode"></i>
+        <i class="fas fa-satellite-dish"></i>
+        <i class="fas fa-compass"></i>
+        <i class="fas fa-file-alt"></i>
     </div>
 
+    <!-- Toast -->
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMessage">Success!</span></div>
+
     <div class="share-card" id="appContainer">
-        <!-- Confetti container -->
+        <!-- Confetti -->
         <div class="confetti-container" id="confettiContainer"></div>
 
         <!-- HERO -->
@@ -656,10 +609,10 @@
                 <i class="fas fa-check-circle"></i> <span>GPS Photo · Trusted record · share & earn</span>
             </div>
             <div class="hero-features">
-                <span><i class="fas fa-map-marker-alt"></i> GPS stamp</span>
-                <span><i class="fas fa-qrcode"></i> QR verify</span>
-                <span><i class="fas fa-file-export"></i> PDF / KML</span>
-                <span><i class="fas fa-watermark"></i> Custom logo</span>
+                <span><i class="fas fa-map-marker-alt"></i> GPS</span>
+                <span><i class="fas fa-qrcode"></i> QR</span>
+                <span><i class="fas fa-file-export"></i> Export</span>
+                <span><i class="fas fa-watermark"></i> Logo</span>
                 <span><i class="fas fa-wifi-slash"></i> Offline</span>
                 <span><i class="fas fa-star"></i> PRO</span>
             </div>
@@ -667,91 +620,140 @@
 
         <!-- CONTENT -->
         <div class="content">
-            <!-- Stats row -->
-            <div class="stats-row">
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <div class="number" id="totalShares">0</div>
-                    <div class="label">Total Shares</div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-trophy"></i>
-                    <div class="number" id="rewardCount">0</div>
-                    <div class="label">Rewards Earned</div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-fire"></i>
-                    <div class="number" id="streakCount">0</div>
-                    <div class="label">Day Streak</div>
-                </div>
+            <!-- Real-time Counter -->
+            <div class="live-counter">
+                <div class="pulse-dot"></div>
+                <span class="count" id="liveCount">42</span>
+                <span>people claiming rewards right now</span>
+                <div class="ticker"><span id="tickerText">🔥 Raj from Mumbai just claimed PRO • Priya from Delhi earned 50 coins • Amit from Bangalore unlocked Level 2</span></div>
             </div>
 
-            <!-- REWARD CTA -->
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="stat-item"><i class="fas fa-users"></i><div class="number" id="totalShares">0</div><div class="label">Shares</div></div>
+                <div class="stat-item"><i class="fas fa-trophy"></i><div class="number" id="rewardCount">0</div><div class="label">Rewards</div></div>
+                <div class="stat-item"><i class="fas fa-fire"></i><div class="number" id="streakCount">0</div><div class="label">Streak</div></div>
+                <div class="stat-item"><i class="fas fa-coins"></i><div class="number" id="coinBalance">0</div><div class="label">Coins</div></div>
+            </div>
+
+            <!-- Level Indicator -->
+            <div class="level-indicator">
+                <div class="level-badge" id="levelBadge">Lv.1</div>
+                <div class="level-info"><strong id="levelTitle">Starter</strong> · <span id="levelProgress">0/5 shares to next level</span></div>
+            </div>
+
+            <!-- Reward CTA -->
             <div class="reward-cta" id="rewardCta">
                 <i class="fas fa-trophy" id="rewardIcon"></i>
                 <div>
                     <strong id="rewardTitle">🎯 Share with 5 → unlock PRO</strong>
-                    <span id="rewardSub">Get free premium features & badges</span>
+                    <span id="rewardSub">Get premium features & badges</span>
                     <div class="multiplier-badge" id="multiplierBadge">×1 bonus</div>
                 </div>
             </div>
 
-            <!-- PROGRESS -->
+            <!-- Progress -->
             <div class="progress-block">
                 <i class="fas fa-users"></i>
-                <span style="font-weight: 500; color: #154f3a;">Shared</span>
-                <div class="progress-track">
-                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
-                </div>
+                <span style="font-weight:500;color:#154f3a;font-size:0.8rem;">Shared</span>
+                <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%;"></div></div>
                 <span class="share-counter" id="shareCounter">0/5</span>
             </div>
 
-            <!-- SHARE BUTTON -->
+            <!-- Share Button -->
             <button class="btn-whatsapp" id="shareButton">
                 <i class="fab fa-whatsapp"></i> Share now
                 <span class="small-note"><i class="fas fa-arrow-right"></i> 5 friends</span>
             </button>
 
-            <!-- REWARD LINK SECTION (shows after sharing) -->
-            <div class="reward-link-section" id="rewardLinkSection">
-                <div class="link-label">
-                    <i class="fas fa-link"></i>
-                    <span>🎁 Your Reward Link (share with friends to claim)</span>
+            <!-- One-Click Install -->
+            <div class="install-row">
+                <button class="btn-install google" id="installAndroid"><i class="fab fa-google-play"></i> Install on Android</button>
+                <button class="btn-install apple" id="installIOS"><i class="fab fa-apple"></i> Install on iOS</button>
+            </div>
+
+            <!-- Wallet -->
+            <div class="wallet-section">
+                <div class="wallet-balance">
+                    <i class="fas fa-coins"></i>
+                    <div>
+                        <div class="amount" id="walletBalance">0</div>
+                        <div class="label">FieldCam Coins</div>
+                    </div>
                 </div>
+                <button class="btn-redeem" id="redeemBtn"><i class="fas fa-gift"></i> Redeem</button>
+            </div>
+
+            <!-- Reward Link -->
+            <div class="reward-link-section" id="rewardLinkSection">
+                <div class="link-label"><i class="fas fa-link"></i> <span>🎁 Your Reward Link</span></div>
                 <div class="reward-link-box">
-                    <input type="text" id="rewardLinkInput" readonly value="https://fieldcam.in/reward?ref=FC2026">
+                    <input type="text" id="rewardLinkInput" readonly value="https://fieldcam.in/reward?ref=FC0001">
                     <button class="copy-btn" id="copyLinkBtn"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <div style="font-size:0.7rem; color:#5c451b; margin-top:8px;">
-                    <i class="fas fa-info-circle"></i> Share this link with your friends so they can also claim their reward!
+            </div>
+
+            <!-- Geolocation Stats -->
+            <div class="geo-stats" id="geoStats">
+                <div class="geo-item"><div class="flag">🇮🇳</div><div class="name">India</div><div class="shares" id="geoIndia">12 shares</div></div>
+                <div class="geo-item"><div class="flag">🇺🇸</div><div class="name">USA</div><div class="shares" id="geoUSA">8 shares</div></div>
+                <div class="geo-item"><div class="flag">🇬🇧</div><div class="name">UK</div><div class="shares" id="geoUK">5 shares</div></div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="achievements-section">
+                <div class="section-title"><i class="fas fa-medal"></i> Achievements</div>
+                <div class="achievements-grid" id="achievementsGrid">
+                    <div class="achievement-item" data-achievement="first"><i class="fas fa-star"></i><div class="name">First Share</div></div>
+                    <div class="achievement-item" data-achievement="star"><i class="fas fa-star"></i><div class="name">Sharing Star</div></div>
+                    <div class="achievement-item" data-achievement="viral"><i class="fas fa-crown"></i><div class="name">Viral King</div></div>
+                    <div class="achievement-item" data-achievement="ambassador"><i class="fas fa-globe"></i><div class="name">Ambassador</div></div>
                 </div>
             </div>
 
-            <!-- Social proof -->
+            <!-- Missions -->
+            <div class="missions-section">
+                <div class="section-title"><i class="fas fa-tasks"></i> Daily Missions</div>
+                <div id="missionsContainer">
+                    <div class="mission-item" data-mission="daily">
+                        <div class="mission-icon"><i class="fas fa-calendar-day"></i></div>
+                        <div class="mission-info"><div class="title">Share 3 times today</div><div class="desc">+10 bonus coins</div></div>
+                        <div class="mission-progress" id="dailyProgress">0/3</div>
+                    </div>
+                    <div class="mission-item" data-mission="weekly">
+                        <div class="mission-icon"><i class="fas fa-calendar-week"></i></div>
+                        <div class="mission-info"><div class="title">Share 10 this week</div><div class="desc">+50 bonus coins</div></div>
+                        <div class="mission-progress" id="weeklyProgress">0/10</div>
+                    </div>
+                    <div class="mission-item" data-mission="friends">
+                        <div class="mission-icon"><i class="fas fa-user-plus"></i></div>
+                        <div class="mission-info"><div class="title">Get 2 friends to download</div><div class="desc">Special badge</div></div>
+                        <div class="mission-badge" id="friendsBadge">0/2</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Capture -->
+            <div class="email-section">
+                <input type="email" id="emailInput" placeholder="Enter your email for rewards">
+                <button class="btn-subscribe" id="subscribeBtn"><i class="fas fa-envelope"></i> Subscribe</button>
+            </div>
+
+            <!-- Social Proof -->
             <div class="social-proof">
-                <div class="avatars">
-                    <span>A</span>
-                    <span>B</span>
-                    <span>C</span>
-                    <span>D</span>
-                    <span style="background:#7ba392; font-size:0.6rem;">+12</span>
-                </div>
-                <span><strong>24 people</strong> already claimed their reward this week!</span>
-                <span style="margin-left:auto; color:#1f7a5c;"><i class="fas fa-clock"></i> 2 min ago</span>
+                <div class="avatars"><span>A</span><span>B</span><span>C</span><span>D</span><span style="background:#7ba392;font-size:0.6rem;">+12</span></div>
+                <span><strong>24 people</strong> claimed rewards this week!</span>
+                <span style="margin-left:auto;color:#1f7a5c;font-size:0.65rem;"><i class="fas fa-clock"></i> Just now</span>
             </div>
 
-            <!-- attractive share preview -->
+            <!-- Share Preview -->
             <div class="share-preview">
                 <i class="fas fa-comment-dots"></i>
-                <p>
-                    <strong><i class="fas fa-bolt" style="color: #c48b2b;"></i> Attractive message ready!</strong><br>
-                    <span id="previewText">📸 <strong>FieldCam</strong> – GPS camera for professionals. <span class="highlight">Share with 5 contacts & get reward!</span> 🔥</span>
-                </p>
+                <p><strong><i class="fas fa-bolt" style="color:#c48b2b;"></i> Ready to share!</strong><br>
+                <span id="previewText">📸 <strong>FieldCam</strong> – GPS camera for pros. <span class="highlight">Share with 5 contacts & get reward!</span></span></p>
             </div>
 
-            <div class="reset-row">
-                <button class="reset-btn" id="resetButton"><i class="fas fa-undo-alt"></i> reset progress</button>
-            </div>
+            <div class="reset-row"><button class="reset-btn" id="resetButton"><i class="fas fa-undo-alt"></i> reset progress</button></div>
         </div>
 
         <!-- FOOTER -->
@@ -760,55 +762,95 @@
             <a href="https://fieldcam.in" target="_blank"><i class="fas fa-globe"></i> Website</a>
             <a href="mailto:support@fieldcam.in"><i class="fas fa-envelope"></i> Support</a>
             <a href="https://youtube.com/@FieldCamApp" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-            <a href="https://instagram.com/FieldCamApp" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://t.me/FieldCamApp" target="_blank"><i class="fab fa-telegram"></i> Community</a>
         </div>
-        <div class="meta">
-            <i class="fas fa-camera"></i> FieldCam – The Professional GPS Camera for Reliable Field Documentation.
-        </div>
+        <div class="meta"><i class="fas fa-camera"></i> FieldCam – Professional GPS Camera for Reliable Field Documentation.</div>
     </div>
 
     <script>
         (function() {
-            // ----- state -----
+            // ----- STATE -----
             let shareCount = 0;
             let totalShares = 0;
             let rewardsEarned = 0;
             let streakCount = 0;
+            let coinBalance = 0;
+            let dailyShares = 0;
+            let weeklyShares = 0;
+            let friendsDownloaded = 0;
+            let unlockedAchievements = [];
+            let currentLevel = 1;
+            let levelShares = 0;
             const TARGET = 5;
-            const STORAGE_KEY = 'fieldcam_share_reward_v2';
+            const STORAGE_KEY = 'fieldcam_share_reward_v3';
 
-            // DOM
+            // ----- DOM -----
             const progressFill = document.getElementById('progressFill');
             const shareCounter = document.getElementById('shareCounter');
-            const rewardTitle = document.getElementById('rewardTitle');
-            const rewardSub = document.getElementById('rewardSub');
-            const rewardIcon = document.getElementById('rewardIcon');
             const shareButton = document.getElementById('shareButton');
             const resetButton = document.getElementById('resetButton');
-            const previewText = document.getElementById('previewText');
-            const rewardCta = document.getElementById('rewardCta');
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
             const totalSharesEl = document.getElementById('totalShares');
             const rewardCountEl = document.getElementById('rewardCount');
             const streakCountEl = document.getElementById('streakCount');
+            const coinBalanceEl = document.getElementById('coinBalance');
+            const walletBalanceEl = document.getElementById('walletBalance');
+            const rewardCta = document.getElementById('rewardCta');
+            const rewardIcon = document.getElementById('rewardIcon');
+            const rewardTitle = document.getElementById('rewardTitle');
+            const rewardSub = document.getElementById('rewardSub');
             const multiplierBadge = document.getElementById('multiplierBadge');
-            const confettiContainer = document.getElementById('confettiContainer');
             const rewardLinkSection = document.getElementById('rewardLinkSection');
             const rewardLinkInput = document.getElementById('rewardLinkInput');
             const copyLinkBtn = document.getElementById('copyLinkBtn');
+            const previewText = document.getElementById('previewText');
+            const liveCount = document.getElementById('liveCount');
+            const tickerText = document.getElementById('tickerText');
+            const levelBadge = document.getElementById('levelBadge');
+            const levelTitle = document.getElementById('levelTitle');
+            const levelProgress = document.getElementById('levelProgress');
+            const dailyProgress = document.getElementById('dailyProgress');
+            const weeklyProgress = document.getElementById('weeklyProgress');
+            const friendsBadge = document.getElementById('friendsBadge');
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const confettiContainer = document.getElementById('confettiContainer');
+            const emailInput = document.getElementById('emailInput');
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            const redeemBtn = document.getElementById('redeemBtn');
+            const installAndroid = document.getElementById('installAndroid');
+            const installIOS = document.getElementById('installIOS');
 
-            // ----- Reward link (dynamic) -----
-            function getRewardLink() {
-                // Generate unique referral code based on total shares
-                const refCode = `FC${String(totalShares + 1).padStart(4, '0')}`;
-                return `https://fieldcam.in/reward?ref=${refCode}`;
-            }
+            // Achievement thresholds
+            const ACHIEVEMENTS = {
+                first: { name: 'First Share', icon: 'fa-star', threshold: 1, unlocked: false },
+                star: { name: 'Sharing Star', icon: 'fa-star', threshold: 10, unlocked: false },
+                viral: { name: 'Viral King', icon: 'fa-crown', threshold: 50, unlocked: false },
+                ambassador: { name: 'Ambassador', icon: 'fa-globe', threshold: 100, unlocked: false }
+            };
 
-            function updateRewardLink() {
-                rewardLinkInput.value = getRewardLink();
-            }
+            // Level system
+            const LEVELS = [
+                { level: 1, shares: 5, title: 'Starter', reward: 'PRO features' },
+                { level: 2, shares: 25, title: 'Sharer', reward: 'Exclusive content' },
+                { level: 3, shares: 50, title: 'Champion', reward: 'Merchandise discount' },
+                { level: 4, shares: 100, title: 'Ambassador', reward: 'Ambassador status' }
+            ];
+
+            // Fake geolocation data
+            const geoData = {
+                India: { flag: '🇮🇳', shares: 12 },
+                USA: { flag: '🇺🇸', shares: 8 },
+                UK: { flag: '🇬🇧', shares: 5 }
+            };
+
+            // Fake ticker messages
+            const tickerMessages = [
+                '🔥 Raj from Mumbai just claimed PRO',
+                '🌟 Priya from Delhi earned 50 coins',
+                '🚀 Amit from Bangalore unlocked Level 2',
+                '💫 Sarah from London got the Ambassador badge',
+                '🎯 Mike from NYC shared with 25 friends',
+                '🏆 Ananya from Chennai hit 100 shares!'
+            ];
 
             // ----- Toast -----
             let toastTimer;
@@ -818,9 +860,7 @@
                 toast.querySelector('i').className = `fas ${icon}`;
                 toast.classList.add('show');
                 clearTimeout(toastTimer);
-                toastTimer = setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3500);
+                toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 3500);
             }
 
             // ----- Confetti -----
@@ -842,7 +882,79 @@
                 }
             }
 
-            // ----- update UI -----
+            // ----- Reward Link -----
+            function getRewardLink() {
+                const refCode = `FC${String(totalShares + 1).padStart(4, '0')}`;
+                return `https://fieldcam.in/reward?ref=${refCode}`;
+            }
+
+            function updateRewardLink() {
+                rewardLinkInput.value = getRewardLink();
+            }
+
+            // ----- Level System -----
+            function updateLevel() {
+                let level = 1;
+                let shares = totalShares;
+                for (let i = LEVELS.length - 1; i >= 0; i--) {
+                    if (shares >= LEVELS[i].shares) {
+                        level = LEVELS[i].level;
+                        break;
+                    }
+                }
+                currentLevel = level;
+                const current = LEVELS.find(l => l.level === level);
+                const next = LEVELS.find(l => l.level === level + 1);
+                levelBadge.textContent = `Lv.${level}`;
+                levelTitle.textContent = current ? current.title : 'Starter';
+                if (next) {
+                    const remaining = next.shares - shares;
+                    levelProgress.textContent = `${remaining > 0 ? remaining : 0} shares to next level`;
+                } else {
+                    levelProgress.textContent = '🎉 Max level reached!';
+                }
+                return current;
+            }
+
+            // ----- Achievements -----
+            function checkAchievements() {
+                const achievements = document.querySelectorAll('.achievement-item');
+                const thresholds = {
+                    first: 1,
+                    star: 10,
+                    viral: 50,
+                    ambassador: 100
+                };
+                achievements.forEach(el => {
+                    const key = el.dataset.achievement;
+                    if (totalShares >= thresholds[key] && !unlockedAchievements.includes(key)) {
+                        unlockedAchievements.push(key);
+                        el.classList.add('unlocked');
+                        showToast(`🏅 Achievement Unlocked: ${ACHIEVEMENTS[key].name}!`, 'fa-medal');
+                        fireConfetti(20);
+                    }
+                    if (unlockedAchievements.includes(key)) {
+                        el.classList.add('unlocked');
+                    }
+                });
+            }
+
+            // ----- Missions -----
+            function updateMissions() {
+                dailyProgress.textContent = `${dailyShares}/3`;
+                weeklyProgress.textContent = `${weeklyShares}/10`;
+                friendsBadge.textContent = `${friendsDownloaded}/2`;
+
+                document.querySelectorAll('.mission-item').forEach(el => {
+                    const key = el.dataset.mission;
+                    if (key === 'daily' && dailyShares >= 3) el.classList.add('completed');
+                    else if (key === 'weekly' && weeklyShares >= 10) el.classList.add('completed');
+                    else if (key === 'friends' && friendsDownloaded >= 2) el.classList.add('completed');
+                    else el.classList.remove('completed');
+                });
+            }
+
+            // ----- Update UI -----
             function updateUI() {
                 if (shareCount > TARGET) shareCount = TARGET;
                 if (shareCount < 0) shareCount = 0;
@@ -851,36 +963,46 @@
                 progressFill.style.width = percent + '%';
                 shareCounter.textContent = `${shareCount}/${TARGET}`;
 
-                // Update stats
                 totalSharesEl.textContent = totalShares;
                 rewardCountEl.textContent = rewardsEarned;
                 streakCountEl.textContent = streakCount;
+                coinBalanceEl.textContent = coinBalance;
+                walletBalanceEl.textContent = coinBalance;
 
-                // Update reward link
                 updateRewardLink();
+                updateLevel();
+                checkAchievements();
+                updateMissions();
+
+                // Random live count (40-60)
+                liveCount.textContent = Math.floor(Math.random() * 30) + 40;
+
+                // Rotate ticker
+                if (Math.random() > 0.7) {
+                    const msg = tickerMessages[Math.floor(Math.random() * tickerMessages.length)];
+                    tickerText.textContent = msg;
+                }
 
                 const isRewarded = (shareCount >= TARGET);
 
                 if (isRewarded) {
-                    rewardTitle.innerHTML = '🎉 <span style="color:#c48b2b;">REWARD UNLOCKED!</span> PRO features activated';
-                    rewardSub.textContent = '🌟 You earned FieldCam PRO + badge + exclusive sticker pack.';
+                    rewardTitle.innerHTML = '🎉 <span style="color:#c48b2b;">REWARD UNLOCKED!</span> PRO activated';
+                    rewardSub.textContent = '🌟 You earned PRO + badge + coins!';
                     rewardIcon.className = 'fas fa-crown';
                     rewardIcon.style.color = '#d48c2c';
                     shareButton.disabled = true;
                     shareButton.innerHTML = '<i class="fas fa-check-circle"></i> Reward claimed 🎁';
                     shareButton.style.background = '#7ba392';
                     shareButton.style.borderColor = '#5f8b78';
-                    previewText.innerHTML =
-                        `✅ <strong>You did it!</strong> Reward unlocked. Share more to help others. <span class="highlight">🔥 PRO activated</span>`;
+                    previewText.innerHTML = `✅ <strong>You did it!</strong> Reward unlocked! <span class="highlight">🔥 PRO activated</span>`;
                     rewardCta.classList.add('rewarded');
                     multiplierBadge.textContent = '🎖️ MAX LEVEL';
-                    // Show reward link section when rewarded
                     rewardLinkSection.classList.add('show');
                 } else {
                     const remaining = TARGET - shareCount;
                     const bonus = Math.floor(totalShares / 10) + 1;
                     rewardTitle.innerHTML = `🎯 Share with ${remaining} more → unlock PRO`;
-                    rewardSub.textContent = `Get premium features, custom logo, QR & more.`;
+                    rewardSub.textContent = `Get premium features & badges`;
                     rewardIcon.className = 'fas fa-trophy';
                     rewardIcon.style.color = '#b57d2a';
                     shareButton.disabled = false;
@@ -889,24 +1011,32 @@
                     shareButton.style.borderColor = '#34c78f';
                     rewardCta.classList.remove('rewarded');
                     multiplierBadge.textContent = `×${bonus} bonus`;
-                    previewText.innerHTML =
-                        `📸 <strong>FieldCam</strong> – GPS camera for professionals. <span class="highlight">Share with 5 contacts & get reward!</span> 🔥`;
-                    // Hide reward link section if not rewarded
+                    previewText.innerHTML = `📸 <strong>FieldCam</strong> – GPS camera for pros. <span class="highlight">Share with 5 contacts & get reward!</span>`;
                     rewardLinkSection.classList.remove('show');
                 }
 
-                // store
+                // Update geolocation stats with random increments
+                const countries = ['India', 'USA', 'UK'];
+                countries.forEach((country, i) => {
+                    const el = document.getElementById(`geo${country}`);
+                    if (el) {
+                        const base = geoData[country]?.shares || 5;
+                        const variation = Math.floor(Math.random() * 5) - 2;
+                        const val = Math.max(1, base + variation);
+                        el.textContent = `${val} shares`;
+                    }
+                });
+
+                // Save state
                 try {
                     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                        shareCount,
-                        totalShares,
-                        rewardsEarned,
-                        streakCount
+                        shareCount, totalShares, rewardsEarned, streakCount, coinBalance,
+                        dailyShares, weeklyShares, friendsDownloaded, unlockedAchievements
                     }));
                 } catch (e) {}
             }
 
-            // ----- load -----
+            // ----- Load Progress -----
             function loadProgress() {
                 try {
                     const stored = localStorage.getItem(STORAGE_KEY);
@@ -916,12 +1046,17 @@
                         if (data.totalShares !== undefined) totalShares = data.totalShares;
                         if (data.rewardsEarned !== undefined) rewardsEarned = data.rewardsEarned;
                         if (data.streakCount !== undefined) streakCount = data.streakCount;
+                        if (data.coinBalance !== undefined) coinBalance = data.coinBalance;
+                        if (data.dailyShares !== undefined) dailyShares = data.dailyShares;
+                        if (data.weeklyShares !== undefined) weeklyShares = data.weeklyShares;
+                        if (data.friendsDownloaded !== undefined) friendsDownloaded = data.friendsDownloaded;
+                        if (data.unlockedAchievements !== undefined) unlockedAchievements = data.unlockedAchievements;
                     }
                 } catch (e) {}
                 updateUI();
             }
 
-            // ----- ATTRACTIVE SHARE MESSAGE (with reward link) -----
+            // ----- Build Share Message -----
             function buildAttractiveMessage() {
                 const rewardLink = getRewardLink();
                 return `📸 FieldCam – GPS Photo App
@@ -968,7 +1103,7 @@ Share this app with 5 friends and get PRO features FREE!
 FieldCam – The Professional GPS Camera for Reliable Field Documentation. 🚀`;
             }
 
-            // ----- share action -----
+            // ----- Share Action -----
             function handleShare() {
                 if (shareCount >= TARGET) return;
 
@@ -977,63 +1112,73 @@ FieldCam – The Professional GPS Camera for Reliable Field Documentation. 🚀`
                 const whatsappUrl = `https://wa.me/?text=${encoded}`;
                 window.open(whatsappUrl, '_blank');
 
-                // increment after delay
                 if (shareCount < TARGET) {
                     setTimeout(() => {
                         if (shareCount < TARGET) {
-                            shareCount = Math.min(TARGET, shareCount + 1);
-                            totalShares += 1;
-                            // Check if reward just unlocked
+                            shareCount++;
+                            totalShares++;
+                            dailyShares++;
+                            weeklyShares++;
+                            coinBalance += 5; // 5 coins per share
+
+                            // Check missions
+                            if (dailyShares >= 3) coinBalance += 10;
+                            if (weeklyShares >= 10) coinBalance += 50;
+
                             const wasRewarded = (shareCount >= TARGET);
                             updateUI();
-                            showToast(`🎉 Shared! ${shareCount}/${TARGET}`, 'fa-check-circle');
+                            showToast(`🎉 Shared! ${shareCount}/${TARGET} (+5 coins)`, 'fa-check-circle');
+
                             if (wasRewarded) {
-                                rewardsEarned += 1;
-                                streakCount += 1;
+                                rewardsEarned++;
+                                streakCount++;
+                                coinBalance += 20; // Bonus for completing
                                 updateUI();
                                 fireConfetti(50);
                                 showToast('🏆 REWARD UNLOCKED! PRO features activated!', 'fa-crown');
+                            }
+
+                            // Random friend download simulation
+                            if (Math.random() > 0.7 && friendsDownloaded < 2) {
+                                friendsDownloaded++;
+                                updateUI();
+                                showToast('👥 A friend downloaded FieldCam!', 'fa-user-plus');
                             }
                         }
                     }, 2000);
                 }
             }
 
-            // ----- Copy link -----
+            // ----- Copy Link -----
             function copyLink() {
                 const link = rewardLinkInput.value;
                 navigator.clipboard.writeText(link).then(() => {
                     copyLinkBtn.textContent = '✅ Copied!';
-                    copyLinkBtn.classList.add('copied');
                     showToast('📋 Reward link copied!', 'fa-copy');
-                    setTimeout(() => {
-                        copyLinkBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                        copyLinkBtn.classList.remove('copied');
-                    }, 2500);
+                    setTimeout(() => { copyLinkBtn.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 2000);
                 }).catch(() => {
-                    // Fallback
                     rewardLinkInput.select();
                     document.execCommand('copy');
                     copyLinkBtn.textContent = '✅ Copied!';
-                    copyLinkBtn.classList.add('copied');
-                    setTimeout(() => {
-                        copyLinkBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                        copyLinkBtn.classList.remove('copied');
-                    }, 2500);
+                    setTimeout(() => { copyLinkBtn.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 2000);
                 });
             }
 
-            // ----- reset -----
+            // ----- Reset -----
             function resetProgress() {
-                if (confirm('Reset all progress? This will clear your stats.')) {
+                if (confirm('Reset all progress?')) {
                     shareCount = 0;
                     totalShares = 0;
                     rewardsEarned = 0;
                     streakCount = 0;
+                    coinBalance = 0;
+                    dailyShares = 0;
+                    weeklyShares = 0;
+                    friendsDownloaded = 0;
+                    unlockedAchievements = [];
                     updateUI();
                     shareButton.disabled = false;
-                    shareButton.innerHTML =
-                        '<i class="fab fa-whatsapp"></i> Share now <span class="small-note"><i class="fas fa-arrow-right"></i> 5 friends</span>';
+                    shareButton.innerHTML = '<i class="fab fa-whatsapp"></i> Share now <span class="small-note"><i class="fas fa-arrow-right"></i> 5 friends</span>';
                     shareButton.style.background = '#25a87a';
                     shareButton.style.borderColor = '#34c78f';
                     rewardLinkSection.classList.remove('show');
@@ -1041,7 +1186,7 @@ FieldCam – The Professional GPS Camera for Reliable Field Documentation. 🚀`
                 }
             }
 
-            // ----- Ripple effect on button -----
+            // ----- Ripple Effect -----
             function createRipple(e) {
                 const button = e.currentTarget;
                 const rect = button.getBoundingClientRect();
@@ -1055,22 +1200,73 @@ FieldCam – The Professional GPS Camera for Reliable Field Documentation. 🚀`
                 setTimeout(() => ripple.remove(), 600);
             }
 
-            // ----- event binding -----
+            // ----- Email Subscribe -----
+            function subscribeEmail() {
+                const email = emailInput.value.trim();
+                if (!email || !email.includes('@')) {
+                    showToast('Please enter a valid email', 'fa-exclamation-circle');
+                    return;
+                }
+                showToast(`✅ Subscribed! Rewards sent to ${email}`, 'fa-envelope');
+                emailInput.value = '';
+                coinBalance += 10;
+                updateUI();
+            }
+
+            // ----- Redeem Coins -----
+            function redeemCoins() {
+                if (coinBalance < 50) {
+                    showToast('Need 50 coins to redeem! Keep sharing 📤', 'fa-exclamation-circle');
+                    return;
+                }
+                coinBalance -= 50;
+                rewardsEarned++;
+                updateUI();
+                fireConfetti(30);
+                showToast('🎁 Redeemed! You got a special reward!', 'fa-gift');
+            }
+
+            // ----- Install Buttons -----
+            function openAppStore(platform) {
+                const links = {
+                    android: 'https://play.google.com/store/apps/details?id=com.fieldcam.app',
+                    ios: 'https://apps.apple.com/app/fieldcam/id123456789'
+                };
+                const url = platform === 'android' ? links.android : links.ios;
+                const refCode = `ref=${getRewardLink().split('ref=')[1]}`;
+                // Simulate deep link with referral
+                showToast(`📱 Opening ${platform === 'android' ? 'Play Store' : 'App Store'} with referral...`, 'fa-download');
+                // In real implementation, use window.location.href = url;
+                // For demo, just show toast
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, 500);
+            }
+
+            // ----- Event Bindings -----
             shareButton.addEventListener('click', handleShare);
             shareButton.addEventListener('mousedown', createRipple);
             resetButton.addEventListener('click', resetProgress);
             copyLinkBtn.addEventListener('click', copyLink);
+            subscribeBtn.addEventListener('click', subscribeEmail);
+            redeemBtn.addEventListener('click', redeemCoins);
+            installAndroid.addEventListener('click', () => openAppStore('android'));
+            installIOS.addEventListener('click', () => openAppStore('ios'));
 
-            // hidden double-tap on reward cta to force +1 (debug) 
-            document.querySelector('.reward-cta').addEventListener('dblclick', function(e) {
+            // Hidden double-tap for debug
+            document.querySelector('.reward-cta').addEventListener('dblclick', function() {
                 if (shareCount < TARGET) {
-                    shareCount = Math.min(TARGET, shareCount + 1);
-                    totalShares += 1;
+                    shareCount++;
+                    totalShares++;
+                    dailyShares++;
+                    weeklyShares++;
+                    coinBalance += 5;
                     const wasRewarded = (shareCount >= TARGET);
                     updateUI();
                     if (wasRewarded) {
-                        rewardsEarned += 1;
-                        streakCount += 1;
+                        rewardsEarned++;
+                        streakCount++;
+                        coinBalance += 20;
                         updateUI();
                         fireConfetti(50);
                         showToast('🏆 REWARD UNLOCKED! (debug)', 'fa-crown');
@@ -1078,7 +1274,7 @@ FieldCam – The Professional GPS Camera for Reliable Field Documentation. 🚀`
                 }
             });
 
-            // init
+            // Init
             loadProgress();
             if (shareCount >= TARGET) {
                 shareButton.disabled = true;
@@ -1088,6 +1284,17 @@ FieldCam – The Professional GPS Camera for Reliable Field Documentation. 🚀`
                 rewardCta.classList.add('rewarded');
                 rewardLinkSection.classList.add('show');
             }
+
+            // Auto-update live counter
+            setInterval(() => {
+                const count = Math.floor(Math.random() * 30) + 40;
+                liveCount.textContent = count;
+                if (Math.random() > 0.7) {
+                    const msg = tickerMessages[Math.floor(Math.random() * tickerMessages.length)];
+                    tickerText.textContent = msg;
+                }
+            }, 5000);
+
         })();
     </script>
 
